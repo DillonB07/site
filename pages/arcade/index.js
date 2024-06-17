@@ -1,25 +1,25 @@
 import Meta from '@hackclub/meta'
 import fs from 'fs'
-import {Howl} from 'howler'
-import {startCase} from 'lodash'
+import { Howl } from 'howler'
+import { startCase } from 'lodash'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 import path from 'path'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import PageVisibility from 'react-page-visibility'
-import {Fade} from 'react-reveal'
+import { Fade } from 'react-reveal'
 import Ticker from 'react-ticker'
 import Balancer from 'react-wrap-balancer'
-import {Box, Card, Close, Divider, Flex, Grid, Heading, Text} from 'theme-ui'
+import { Box, Card, Close, Divider, Flex, Grid, Heading, Text } from 'theme-ui'
 
 import Announcement from '../../components/announcement'
 import ArcadeFooter from '../../components/arcade/footer'
 import Join from '../../components/arcade/join'
 import Projects from '../../components/arcade/projects'
 import Nav from '../../components/nav'
-import {shopParts} from '../api/arcade/shop'
+import { shopParts } from '../api/arcade/shop'
 
 /** @jsxImportSource theme-ui */
 
@@ -475,7 +475,11 @@ const Tickets = ({ title, num, text, link, bugEater, ...props }) => {
       <Text
         className="gaegu"
         as="h1"
-        sx={{ display: 'block', fontSize: [2, 3, 4], marginTop: bugEater ? [null, null, null, '36px'] : '-10px' }}
+        sx={{
+          display: 'block',
+          fontSize: [2, 3, 4],
+          marginTop: bugEater ? [null, null, null, '36px'] : '-10px'
+        }}
       >
         {title}
       </Text>
@@ -728,7 +732,6 @@ const FAQ = ({ question, answer }) => {
         }}
         dangerouslySetInnerHTML={{ __html: parsedAnswer }}
       />
-     
     </Box>
   )
 }
@@ -882,11 +885,7 @@ function thinkingWords() {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-const Arcade = ({
-  stickers = [],
-  carousel = [],
-  highlightedItems = []
-}) => {
+const Arcade = ({ stickers = [], carousel = [], highlightedItems = [] }) => {
   const [showComponent, setShowComponent] = useState(false)
   const [showNum, setNum] = useState(false)
   const [showForm, setForm] = useState(false)
@@ -1473,8 +1472,15 @@ const Arcade = ({
               title="Your own project!"
               text={
                 <>
-                  <p>You could build an AR game, pixel art display, drawing robot, and more! Anytime you work on your project, start the hack hour timer. You earn a ticket for every hour you spend on your project.</p>
-                  <Heading as="h4" my={0}>Don't know where to start?</Heading>
+                  <p>
+                    You could build an AR game, pixel art display, drawing
+                    robot, and more! Anytime you work on your project, start the
+                    hack hour timer. You earn a ticket for every hour you spend
+                    on your project.
+                  </p>
+                  <Heading as="h4" my={0}>
+                    Don't know where to start?
+                  </Heading>
                   <ul>
                     <li>
                       <Link href="https://boba.hackclub.com/" target="_blank">
@@ -1524,7 +1530,8 @@ const Arcade = ({
                       Write a programming language, receive fudge!
                     </li>
                   </ul>
-                </>}
+                </>
+              }
               num="Infinite"
               sx={{
                 gridColumn: ['', 'span 2', 'span 2', 'span 2'],
@@ -1542,9 +1549,7 @@ const Arcade = ({
             <Tickets
               title="Not sure what to make?"
               bugEater={true}
-              text={
-                <>Click me for ideas!</>
-              }
+              text={<>Click me for ideas!</>}
               sx={{
                 '&ul>li': {
                   color: 'inherit'
@@ -1857,12 +1862,12 @@ export async function getStaticProps() {
     .filter(sticker => sticker !== 'hero.jpg')
 
   const items = await shopParts()
-  
+
   const carousel = items
     .map(record => ({
       hours: record['Cost Hours'] || 0,
       imageURL: record['Image URL'] || '',
-      enabledCarousel: record['Enabled Carousel'] || false,
+      enabledCarousel: record['Enabled Carousel'] || false
     }))
     .filter(item => item.enabledCarousel)
     .filter(item => item.imageURL !== '')
@@ -1873,11 +1878,11 @@ export async function getStaticProps() {
     .map(record => ({
       // id: record['ID'],
       'Image URL': record['Image URL'] || null,
-      'Name': record['Name'] || null,
+      Name: record['Name'] || null,
       'Small Name': record['Small Name'] || null,
       'Full Name': record['Full Name'] || null,
       'Cost Hours': record['Cost Hours'] || null,
-      'Description': record['Description'] || null,
+      Description: record['Description'] || null,
       'Fulfillment Description': record['Fulfillment Description'] || null,
       'Extra tags': record['Extra tags'] || []
     }))
