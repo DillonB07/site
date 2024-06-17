@@ -78,7 +78,7 @@ body, html {
  body {
     background-color: #FAEFD6;
  }
-  
+
  /* CSS from https://codepen.io/quadbaup/details/rKOKQv */
 .thought {
     display: flex;
